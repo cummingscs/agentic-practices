@@ -6,6 +6,7 @@
 - [ ] Register both hooks (`surface-plan.sh`, `commit-checkpoint.sh`) via the installer's fragment merge, confirm the existing commit-checkpoint entry is not duplicated, and confirm the plan hook prints in a new session.
 - [ ] Verify Claude Code discovers `.claude/skills/install-practices` when started in this repo.
 - [ ] Verify how OpenSpec merges change deltas back into specs (read its docs or repo) and decide what to borrow.
+- [ ] Fix `claude/hooks/commit-checkpoint.sh` false positives: it fires on any Bash command whose text contains "git commit" (observed on an `echo` test input) and never checks that the commit succeeded, so its "a commit was just made" message can be wrong. Match only a real `git commit` invocation and check success. Write the test first (failing, then passing).
 
 ## Considerations
 
