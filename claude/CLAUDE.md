@@ -27,12 +27,12 @@
 ## Git
 - Conventional Commits. Read `~/.gitmessage` for structure; a project `.gitmessage` takes precedence.
 - You may commit without asking. Keep commits small. After each commit, report it (hash, message, diffstat) and stop until I approve or acknowledge that I've reviewed it. Don't start the next piece of work or make another commit before then.
-- Always ask before pushing or opening a PR.
+- Never push; I do all pushes. Always ask before opening a PR.
 
 ## Ask first
 - Adding or upgrading dependencies
 - Destructive or irreversible commands
-- Pushing, or opening PRs
+- Opening PRs
 - Posting as me anywhere (Slack, etc.). Never send or schedule messages; draft them for me to send. Reactions and canvas or list edits need approval.
 - Changing files outside the agreed scope
 
