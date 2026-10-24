@@ -15,5 +15,5 @@ This repo holds my reusable Claude Code configuration and is where I evolve how 
 - Change `claude/` through the codify-decision flow: state the decision, gather evidence, propose the diff, wait for approval. Mark weak evidence as provisional with a date.
 - Everything committed here must be safe to publish. Use public sources only. Generalize rationale. Name no employer-internal repos, tickets, URLs, channels or figures. Grep staged files for such terms before each commit.
 - Commit as my personal identity: verify the repo-local `git config user.email` before committing.
-- Conventional Commits per `~/.gitmessage`. Small commits. Ask before pushing.
+- Conventional Commits per `.gitmessage`. Small commits. Ask before pushing.
 - Keep this file and `claude/CLAUDE.md` short. Move detail into rules or docs.
