@@ -20,7 +20,21 @@ Install the contents of this repo's `claude/` tree into `~/.claude` by symlink, 
 
 Link each file or skill directory individually, never a whole parent directory, so machine-local files can coexist.
 
-## 1. Check (always first)
+## 0. Check for upstream updates (always first)
+
+The links point at this checkout, so a stale checkout means stale config everywhere. Run `GIT_TERMINAL_PROMPT=0 git fetch --quiet` (the variable stops an auth prompt from hanging). If it fails (offline, auth) or the branch has no upstream, say so in one line and continue with step 1 against local state.
+
+Otherwise classify with `git rev-list --left-right --count HEAD...@{u}` (ahead, then behind) and `git status --porcelain`:
+
+- **Behind** (ahead 0, behind N): stop. Suggest `git pull`, then rerunning this skill.
+- **Diverged** (both nonzero): stop. Suggest `git pull --rebase` or resolving by hand, then rerunning.
+- **Ahead** (behind 0): note the N unpushed commits and continue.
+- **Dirty**: list uncommitted paths under `claude/` and note they are already live in every session, then continue.
+- **Up to date and clean**: say so in one line and continue.
+
+Never pull, rebase or push yourself; only suggest it.
+
+## 1. Check links
 
 Confirm the working directory has `claude/` and `README.md`. For every source in the mapping, compute its target and classify it with `readlink`:
 

@@ -8,7 +8,7 @@
 - [ ] Verify how OpenSpec merges change deltas back into specs (read its docs or repo) and decide what to borrow.
 - [x] Fix `claude/hooks/commit-checkpoint.sh` false positives: it fires on any Bash command whose text contains "git commit" (observed on an `echo` test input) and never checks that the commit succeeded, so its "a commit was just made" message can be wrong. Match only a real `git commit` invocation and check success. Write the test first (failing, then passing).
 - [ ] Fix the Slack permission rules in the local `~/.claude/settings.json`: the deny/ask rules name `mcp__claude_ai_Slack__*` tools, but Slack is loaded from the `slack` plugin as `mcp__plugin_slack_slack__*`, so the rules never match and "never send" rests on instructions alone. Authenticate the plugin, list its real tool names, rewrite the rules (consider a wildcard for send/schedule), then confirm a send attempt is denied. Decide whether permissions belong in `claude/settings.fragment.json`.
-- [ ] Add a step 0 to `install-practices`: `git fetch` (warn and continue if offline), then report the tree state. Behind or diverged: stop and suggest `git pull` (or rebase), then rerun. Ahead: note unpushed commits. Dirty: note that uncommitted edits in `claude/` are already live. Never pull automatically. Why: a routine reminder to pull, not only for a second machine.
+- [x] Add a step 0 to `install-practices`: `git fetch` (warn and continue if offline), then report the tree state. Behind or diverged: stop and suggest `git pull` (or rebase), then rerun. Ahead: note unpushed commits. Dirty: note that uncommitted edits in `claude/` are already live. Never pull automatically. Why: a routine reminder to pull, not only for a second machine.
 
 ## Considerations
 
