@@ -14,7 +14,7 @@ A versioned home for my reusable Claude Code configuration, and a place to evolv
 
 ## Behavior
 - **Install:** `/install-practices` checks and applies symlinks and merges the hook registrations declared in `claude/settings.fragment.json` into `~/.claude/settings.json`, each step with approval, backing up conflicts and never deleting or duplicating.
-- **Commit checkpoint:** `claude/hooks/commit-checkpoint.sh` enforces the "report each commit and pause for review" rule from `claude/CLAUDE.md`.
+- **Commit checkpoint:** `claude/hooks/commit-checkpoint.sh` enforces the "report each commit and pause for review" rule from `claude/CLAUDE.md`. It fires when HEAD's reflog gained a commit-creating entry (commit, amend, finished rebase, merge commit, cherry-pick, revert) since its last run in that repo, never on command text alone. Pulls, fetches, checkouts and failed or dry-run commits stay silent.
 - **Specs:** one central `docs/SPEC.md` per repo; efforts as dated project folders; merge-back into the SPEC needs approval; documents carry a header (`Type`, `Status`, `Supersedes/Amends`, `Level`, `Audience`). Details in `claude/rules/specs.md`.
 - **Plan:** every repo keeps `.claude/PLAN.md` with Next, Considerations and an optional Vision. `claude/hooks/surface-plan.sh` surfaces the open TODO count and Consideration titles at session start.
 - **Decisions:** `codify-decision` places a decision in the lightest reliable mechanism and scope, with global split into repo-managed and machine-local homes.
