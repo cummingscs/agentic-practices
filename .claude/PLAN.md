@@ -24,6 +24,12 @@
 - **Cost:** moderate; plugin skills are namespaced, installs are copies (no live editing), and every enabled plugin adds context cost.
 - **Evidence:** per the plugin docs, plugins bundle skills, agents, hooks and MCP servers; rules and CLAUDE.md are not listed as plugin content (unverified).
 
+### Stop the global CLAUDE.md loading twice in this repo
+- **What:** keep `claude/CLAUDE.md` from loading as a repo file on top of its `~/.claude/CLAUDE.md` symlink, for example by renaming the source (and the installer mapping) or excluding the path from memory loading (unverified whether a setting for that exists).
+- **Benefit:** about 660 est. tokens per session in this repo, and one copy of the global rules instead of two.
+- **Cost:** small; a rename plus installer and doc references, or one setting.
+- **Evidence:** at the start of a 2026-10-23 session the same content appeared both as `agentic-practices/claude/CLAUDE.md` and as `~/.claude/CLAUDE.md` (found by `/doctor`). Why the nested file loads at startup is unverified.
+
 ### An `ideas` repo for idea-stage specs
 - **What:** a small repo holding `idea-` projects that have no home repo yet, marked `graduated` when they move.
 - **Benefit:** a place for specs that may never become repos.
