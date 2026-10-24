@@ -7,5 +7,5 @@
 - ADRs and `GLOSSARY.md` stay repo-wide (`docs/adr/`, repo root), per the domain-modeling skill. SPECs link to them.
 - A project is done only when its outcome is merged into `docs/SPEC.md`, tracked by a "Merge into SPEC" item (pending or merged, with commit). Propose the exact `docs/SPEC.md` diff and get my approval before applying it. Keep the project folder as history.
 - A new repo's initial design seeds `docs/SPEC.md` and is recorded as its first project, including the interview questions and answers.
-- If a spec has no repo yet, run a local `git init` and start it there. Ask before creating a remote or pushing.
+- If a spec has no repo yet, run a local `git init` and start it there. Ask before creating a remote. Never push.
 - Design order: brainstorm interview, then ask whether there is anything else I want to cover, then grill the remaining open items. Record questions, answers and added items in the spec as they come up.
