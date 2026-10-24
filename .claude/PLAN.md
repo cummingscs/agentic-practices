@@ -7,6 +7,7 @@
 - [ ] Verify Claude Code discovers `.claude/skills/install-practices` when started in this repo.
 - [ ] Verify how OpenSpec merges change deltas back into specs (read its docs or repo) and decide what to borrow.
 - [ ] Fix `claude/hooks/commit-checkpoint.sh` false positives: it fires on any Bash command whose text contains "git commit" (observed on an `echo` test input) and never checks that the commit succeeded, so its "a commit was just made" message can be wrong. Match only a real `git commit` invocation and check success. Write the test first (failing, then passing).
+- [ ] Fix the Slack permission rules in the local `~/.claude/settings.json`: the deny/ask rules name `mcp__claude_ai_Slack__*` tools, but Slack is loaded from the `slack` plugin as `mcp__plugin_slack_slack__*`, so the rules never match and "never send" rests on instructions alone. Authenticate the plugin, list its real tool names, rewrite the rules (consider a wildcard for send/schedule), then confirm a send attempt is denied. Decide whether permissions belong in `claude/settings.fragment.json`.
 
 ## Considerations
 
