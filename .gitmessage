@@ -5,6 +5,14 @@
 # [optional footers as git trailers, e.g. Refs: ..., BREAKING CHANGE: ...]
 #
 # Conventional Commits 1.0.0: https://www.conventionalcommits.org/en/v1.0.0/
-# Types: feat fix docs style refactor perf test build ci chore revert
+# Types: feat fix docs style refactor perf test build ci config chore revert
 # Scope is optional. "!" before ":" or a BREAKING CHANGE footer marks a
 # breaking change. Skip the body when the header says it all.
+#
+# config (anything that changes agent or tool behavior, e.g. claude/,
+# settings, hooks) always needs a body with these sections, kept short:
+#   Before this commit...      the behavior and the problem
+#   This commit...             the change and why
+#   This was tested by...      how you confirmed the new behavior
+#   Impact...                  effects on behavior, performance, correctness
+#   Rollback...                how to undo it, including local, unversioned files
