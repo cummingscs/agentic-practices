@@ -25,7 +25,7 @@ Capture the practices I want as global defaults, make them reusable and versione
 - [decided] Hooks and their registrations are versioned here: scripts in `claude/hooks/`, registrations in `claude/settings.fragment.json`, merged idempotently by the installer.
 - [my call, minor] `Level` values for designs are `architecture`, `system` and `detailed`; implementation logs are a separate `log` type.
 - [decided] Personal commit identity for this repo; nothing employer-internal is committed.
-- [guess, untested] Project skills in `.claude/skills/` are discovered when Claude Code starts in this repo.
+- [verified] Project skills in `.claude/skills/` are discovered when Claude Code starts in this repo (confirmed after install; see `.claude/PLAN.md`).
 
 ## Evidence
 See `research-prior-art.md` for public sources. Local evidence: no repo had an opportunities queue file, consistent with it not being surfaced; the PLAN convention is therefore provisional.
@@ -33,5 +33,5 @@ See `research-prior-art.md` for public sources. Local evidence: no repo had an o
 ## Open threads
 - Superpowers usage: brainstorming asks one open question at a time, grilling asks a round with recommended answers; we sequence them (brainstorm, "anything else", grill). Revisit once used in practice.
 - Skills inventory and lifecycle; MCP management; agents and subagents; hooks and permissions.
-- Verify OpenSpec's merge mechanics; verify skill discovery and hook output after install.
-- The `steven-as-an-mcp` repo is a lab consumer; its draft design should be restructured to this layout.
+- The `steven-as-an-mcp` repo is a lab consumer; its draft design should be restructured to this layout (tracked in `.claude/PLAN.md`).
+- Resolved: OpenSpec's merge mechanics are researched in `research-openspec.md` (adoption decision tracked in `.claude/PLAN.md`); skill discovery and hook output were verified after install.
