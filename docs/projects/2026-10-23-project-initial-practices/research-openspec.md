@@ -1,7 +1,7 @@
 # OpenSpec: how change deltas merge into specs
 
 - Type: research
-- Status: draft
+- Status: reviewed (2026-10-30: adopted items 3–4; 1–2 deferred to Considerations; 5 dropped)
 - Amends: `research-prior-art.md` (closes its OpenSpec verification task)
 - Audience: me, and agents working on the spec convention
 
