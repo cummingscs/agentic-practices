@@ -7,7 +7,8 @@
 - [x] Verify Claude Code discovers `.claude/skills/install-practices` when started in this repo.
 - [x] Decide which OpenSpec practices to adopt into `claude/rules/specs.md` (via codify-decision). Adopted merge safety (base check, no-loss check) on 2026-10-30; see `docs/projects/2026-10-23-project-initial-practices/research-openspec.md`.
 - [x] Fix `claude/hooks/commit-checkpoint.sh` false positives: it fires on any Bash command whose text contains "git commit" (observed on an `echo` test input) and never checks that the commit succeeded, so its "a commit was just made" message can be wrong. Match only a real `git commit` invocation and check success. Write the test first (failing, then passing).
-- [ ] Fix the Slack permission rules in the local `~/.claude/settings.json`: the deny/ask rules name `mcp__claude_ai_Slack__*` tools, but Slack is loaded from the `slack` plugin as `mcp__plugin_slack_slack__*`, so the rules never match and "never send" rests on instructions alone. Authenticate the plugin, list its real tool names, rewrite the rules (consider a wildcard for send/schedule), then confirm a send attempt is denied. Decide whether permissions belong in `claude/settings.fragment.json`. Once fixed, revisit making `auto` the default permission mode (deferred by `/doctor` on 2026-10-24 pending this fix).
+- [x] Fix the Slack permission rules in the local `~/.claude/settings.json`: added deny (`slack_send_message`, `slack_schedule_message`, `slack_complete_file_upload`) and the existing 8 ask rules under the plugin prefix `mcp__plugin_slack_slack__`, keeping the `mcp__claude_ai_Slack__` copies. Verified 2026-10-30: send and schedule are denied by rule; the draft tool still reaches Slack.
+- [ ] Decide whether to make `auto` the default permission mode (deferred by `/doctor` on 2026-10-24 pending the Slack rule fix, now done). Evidence: before the fix, the auto mode classifier blocked a test send as "External System Writes", so the classifier was the only guard.
 - [ ] Restructure the `steven-as-an-mcp` draft design to this repo's spec layout (`docs/SPEC.md` plus a dated project folder), per `claude/rules/specs.md`.
 - [x] Add a step 0 to `install-practices`: `git fetch` (warn and continue if offline), then report the tree state. Behind or diverged: stop and suggest `git pull` (or rebase), then rerun. Ahead: note unpushed commits. Dirty: note that uncommitted edits in `claude/` are already live. Never pull automatically. Why: a routine reminder to pull, not only for a second machine.
 
@@ -42,6 +43,12 @@
 - **Benefit:** reviews intent at item level rather than a raw diff.
 - **Cost:** about 4 lines in `claude/rules/specs.md` plus a short template.
 - **Evidence:** `docs/SPEC.md` has 5 behavior items and no project merge since seeding, so a raw diff is easy to review. Trigger: a merge touching several items, or a diff hard to review.
+
+### Version permission rules in the settings fragment
+- **What:** move durable permission rules (such as the Slack deny and ask rules) into `claude/settings.fragment.json`, and extend `install-practices` to merge `permissions` as it merges `hooks`.
+- **Benefit:** rules are versioned, reviewed, and the same on every machine; the Slack fix would not have been needed on a second machine.
+- **Cost:** moderate; idempotent array merge in the installer, plus deciding which rules are global versus machine-local.
+- **Evidence:** the Slack rules went stale silently when Slack moved from the claude.ai connector to a plugin, and nothing versioned showed it. The installer merges only `hooks` today.
 
 ### An `ideas` repo for idea-stage specs
 - **What:** a small repo holding `idea-` projects that have no home repo yet, marked `graduated` when they move.
